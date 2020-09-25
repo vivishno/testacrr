@@ -11,7 +11,7 @@ on:
 env:
  CONTAINER_REGISTRY_NAME: myvivekacr  #set this to your container registry name   
  
-jobs:
+jobs: 
     build-and-deploy:
         runs-on: ubuntu-latest  
         steps:
