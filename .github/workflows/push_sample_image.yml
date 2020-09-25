@@ -1,0 +1,29 @@
+on: 
+ push: 
+  paths:
+   - '.github/workflows/push_sample_image.yml'
+   - 'index.html'   
+     
+# CONFIGURATION
+#,  
+# 1. Set up the following secrets in your repository:
+#   CONTAINER_REGISTRY_NAME   
+env:
+ CONTAINER_REGISTRY_NAME: your-registry-name  #set this to your container registry name   
+ 
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest  
+        steps:
+        - uses: actions/checkout@master
+                    
+        - name: 'Build and push image'
+          uses: azure/docker-login@v1
+          with:
+            login-server: ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io 
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
+            
+        - run: |
+            docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:$GITHUB_SHA
+            docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:$GITHUB_SHA
