@@ -9,8 +9,8 @@ on:
 #   RESOURCE_GROUP 
 #   CONTAINER_REGISTRY_NAME
 env:
- RESOURCE_GROUP: testacr       #set this to your resource group name      
- CONTAINER_REGISTRY_NAME: myregistryviv    #set this to your container registry name
+ RESOURCE_GROUP: acr       #set this to your resource group name      
+ CONTAINER_REGISTRY_NAME: myvivekacr    #set this to your container registry name
  
 jobs:
     build-and-deploy:
