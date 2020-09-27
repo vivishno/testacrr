@@ -3,7 +3,7 @@ on:
   paths:
    - '.github/workflows/push_sample_image.yml'  
    - 'index.html'   
-     
+      
 # CONFIGURATION 
 #,  
 # 1. Set up the following secrets in your repository:  
