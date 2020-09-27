@@ -52,7 +52,7 @@ jobs:
         releaseName: test0125
       id: bake
 
-    - uses: Azure/k8s-deploy@v1
+    - uses: vivishno/k8s-deploy@master
       with:
         manifests: ${{ steps.bake.outputs.manifestsBundle }}
         images: |
