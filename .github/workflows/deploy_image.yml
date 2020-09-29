@@ -67,7 +67,5 @@ jobs:
     - uses: azure/k8s-deploy@v1.2
       with:
         manifests: ${{ steps.bake.outputs.manifestsBundle }}
-        images: |
-          "${{ env.IMAGE_NAME }}"
-        imagepullsecrets: |
-          demo-k8s-secret
+        images: "${{ env.IMAGE_NAME }}"
+        imagepullsecrets: demo-k8s-secret
