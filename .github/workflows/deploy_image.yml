@@ -1,7 +1,7 @@
 name: CI
 on:
   repository_dispatch:
-    types: [containerregistry-imagepushed]
+    types: [containerregistry-imagepushedy]
     
 # CONFIGURATION
 # Set up the following secrets in your repository:
