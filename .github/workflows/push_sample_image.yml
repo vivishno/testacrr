@@ -23,7 +23,8 @@ jobs:
             login-server: ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io 
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
-            
+            #  docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:0
         - run: |
-            docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:0
-            docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:0
+            docker pull helloworld
+            docker tag helloworld ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:10
+            docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:10
