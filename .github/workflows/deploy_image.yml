@@ -29,7 +29,7 @@ jobs:
     
     - name: check1
       run: |
-        echo $KUBECONFIG
+        cat $KUBECONFIG
         
        
                 
@@ -44,7 +44,7 @@ jobs:
         
     - name: check1
       run: |
-        echo $KUBECONFIG   
+        cat $KUBECONFIG   
              
     - uses: Azure/k8s-create-secret@v1
       with:
