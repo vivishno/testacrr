@@ -27,35 +27,20 @@ jobs:
      # run: |
       #  if [ "$repo_version" != "$filter" ]; then echo "incorrect tag filter supplied"; exit 1 ; fi;
           
-    - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
-      uses: azure/aks-set-context@v1
-      with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}' 
-        cluster-name: ${{ env.CLUST_NAME }}
-        resource-group: ${{ env.RESOURCE_GROUP }}
     
-    - uses: Azure/k8s-create-secret@v1
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
       with:
-        container-registry-url: ${{ env.HOST_NAME }}
-        container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
-        container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-        secret-name: demo-k8s-secret
-
-    - uses: azure/k8s-bake@v1
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - uses: azure/docker-login@v1
       with:
-        renderEngine: 'helm2'
-        helmChart: './charts/sampleapp/' 
-        overrideFiles: './charts/sampleapp/values.yaml'
-        overrides: |     
-          image.repository:${{ env.REPO_NAME }}
-          image.tag:${{ env.REPO_VERSION }}
-        releaseName: test0125
-      id: bake
-
-    - uses: Azure/k8s-deploy@v1
+        login-server: ${{ env.HOST_NAME }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    
+      
+    - uses: azure/webapps-deploy@v2
       with:
-        manifests: ${{ steps.bake.outputs.manifestsBundle }}
-        images: |
-          "${{ env.IMAGE_NAME }}"
-        imagepullsecrets: |
-          demo-k8s-secret
+        app-name: 'node-rnc'
+        images: "${{ env.IMAGE_NAME }}"
