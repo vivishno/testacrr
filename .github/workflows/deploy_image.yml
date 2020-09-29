@@ -1,7 +1,7 @@
 name: CI
 on:
   repository_dispatch:
-    types: [containerregistry-imagepushedy]
+    types: [containerregistry-imagepushed]
     
 # CONFIGURATION
 # Set up the following secrets in your repository:
@@ -27,24 +27,12 @@ jobs:
      # run: |
       #  if [ "$repo_version" != "$filter" ]; then echo "incorrect tag filter supplied"; exit 1 ; fi;
           
- #   - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
- #     uses: azure/aks-set-context@v1
- #     with:
- #       creds: '${{ secrets.AZURE_CREDENTIALS }}' 
- #       cluster-name: ${{ env.CLUST_NAME }}
- #       resource-group: ${{ env.RESOURCE_GROUP }}
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
+    - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
+      uses: azure/aks-set-context@v1
       with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-
-    - name: create subscription
-      uses: azure/CLI@v1 
-      with:
-           azcliversion: 2.9.1
-           inlineScript: | 
-             az aks get-credentials -n $CLUST_NAME -g $RESOURCE_GROUP
+        creds: '${{ secrets.AZURE_CREDENTIALS }}' 
+        cluster-name: ${{ env.CLUST_NAME }}
+        resource-group: ${{ env.RESOURCE_GROUP }}
              
     - uses: Azure/k8s-create-secret@v1
       with:
