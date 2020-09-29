@@ -26,13 +26,25 @@ jobs:
     #- name: Check tag filter
      # run: |
       #  if [ "$repo_version" != "$filter" ]; then echo "incorrect tag filter supplied"; exit 1 ; fi;
-          
+    
+    - name: check1
+      run: |
+        echo $KUBECONFIG
+        
+       
+                
     - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
       uses: azure/aks-set-context@v1
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}' 
         cluster-name: ${{ env.CLUST_NAME }}
         resource-group: ${{ env.RESOURCE_GROUP }}
+        
+        
+        
+    - name: check1
+      run: |
+        echo $KUBECONFIG   
              
     - uses: Azure/k8s-create-secret@v1
       with:
