@@ -33,18 +33,19 @@ jobs:
         
        
                 
-   - name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
-     uses: azure/aks-set-context@v1
-     with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}' 
-        cluster-name: ${{ env.CLUST_NAME }}
-        resource-group: ${{ env.RESOURCE_GROUP }}
-   - uses: azure/k8s-set-context@v1
-     with:
-      method: kubeconfig
-      kubeconfig: ${{ secrets.KUBECONFIG }} # Use secret (https://developer.github.com/actions/managing-workflows/storing-secrets/)
-      context: clust1  #If left unspecified, current-context from kubeconfig is used as default
-  id: setcontext 
+   #- name: Set Context for Azure Kubernetes Cluster using azure/aks-set-context@v1 action
+   #  uses: azure/aks-set-context@v1
+   #  with:
+   #     creds: '${{ secrets.AZURE_CREDENTIALS }}' 
+   #     cluster-name: ${{ env.CLUST_NAME }}
+   #     resource-group: ${{ env.RESOURCE_GROUP }}
+        
+    - uses: azure/k8s-set-context@v1
+      with:
+       method: kubeconfig
+       kubeconfig: ${{ secrets.KUBECONFIG }} # Use secret (https://developer.github.com/actions/managing-workflows/storing-secrets/)
+       context: clust1  #If left unspecified, current-context from kubeconfig is used as default
+      id: setcontext 
         
         
     - name: check1
