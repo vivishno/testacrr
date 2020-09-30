@@ -6,7 +6,7 @@ on:
        
 # CONFIGURATION 
 #,   
-# 1. Set up the following secrets in your repository:  
+# 1. Set up the following secrets in your repository:   
 #   CONTAINER_REGISTRY_NAME    
 env:
  CONTAINER_REGISTRY_NAME: testvivek  #set this to your container registry name     
@@ -25,5 +25,5 @@ jobs:
             password: ${{ secrets.REGISTRY_PASSWORD }}
             #  docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:0
         - run: |
-            docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:aaaa
-            docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:aaaa
+            docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:ai
+            docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:ai
