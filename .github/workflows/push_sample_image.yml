@@ -24,6 +24,6 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
             #  docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:0
-        - run: |
-            docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:aid
-            docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:aid
+        - run: | 
+            docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:aidr
+            docker push ${{ env.CONTAINER_REGISTRY_NAME }}.azurecr.io/sample_image:aidr
