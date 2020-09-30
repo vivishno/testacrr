@@ -63,7 +63,9 @@ jobs:
           image.tag:${{ env.REPO_VERSION }}
         releaseName: test0125
       id: bake
-
+    - name: check pods
+      run: |
+        kubectl get pods
     - uses: azure/k8s-deploy@v1.2
       with:
         manifests: ${{ steps.bake.outputs.manifestsBundle }}
