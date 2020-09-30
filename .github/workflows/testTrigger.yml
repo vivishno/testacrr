@@ -46,7 +46,7 @@ jobs:
           image.repository:${{ env.REPO_NAME }}
           image.tag:${{ env.REPO_VERSION }}
         releaseName: test0125
-	    helm-version: 'v3.1.1'
+        helm-version: 'v3.1.1'
       id: bake
       
     - uses: Azure/k8s-deploy@v1
